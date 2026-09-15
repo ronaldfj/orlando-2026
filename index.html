@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Universal Orlando · 12–19 oct 2026 · Itinerario</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1F3B; --ink-2:#4A4F6A; --line:#E2E4EE; --bg:#FFFFFF; --bg-2:#F5F6FA;
+    --gold:#C9971C; --gold-soft:#FFF4D6; --teal:#1F7A8C; --teal-soft:#E3F2F5;
+    --done:#2E7D5B; --done-soft:#E4F3EC; --warn:#B23A2E; --warn-soft:#FBE9E6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Manrope,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+  header{padding:22px 18px 12px;border-bottom:1px solid var(--line)}
+  header h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em}
+  header p{margin:6px 0 0;color:var(--ink-2);font-size:14px}
+  .total{display:flex;align-items:center;gap:12px;margin-top:12px}
+  .bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--done);transition:width .3s}
+  .total b{font-size:14px;white-space:nowrap}
+  nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);display:flex;overflow-x:auto;scrollbar-width:none;z-index:5}
+  nav::-webkit-scrollbar{display:none}
+  nav button{flex:0 0 auto;background:none;border:0;border-bottom:3px solid transparent;padding:12px 14px;font:inherit;font-weight:700;font-size:14px;color:var(--ink-2);cursor:pointer}
+  nav button small{display:block;font-weight:500;font-size:11px;color:var(--ink-2)}
+  nav button.on{color:var(--ink);border-color:var(--gold)}
+  nav button:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+  nav button .pct{display:inline-block;margin-left:5px;font-size:11px;color:var(--done);font-weight:800}
+  main{padding:16px 16px 60px;max-width:720px;margin:0 auto}
+  section{display:none}
+  section.on{display:block}
+  .day-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:4px 0 6px}
+  .day-h h2{margin:0;font-size:21px;font-weight:800}
+  .day-h span{font-size:13px;color:var(--ink-2)}
+  .lead{margin:0 0 14px;color:var(--ink-2);font-size:14px}
+  .block{margin:18px 0 8px;font-size:12px;font-weight:800;color:var(--teal);letter-spacing:.02em}
+  ul{list-style:none;margin:0;padding:0}
+  li{border-top:1px solid var(--line)}
+  li:last-child{border-bottom:1px solid var(--line)}
+  label{display:grid;grid-template-columns:26px 62px 1fr;gap:10px;align-items:start;padding:12px 4px;cursor:pointer}
+  label.no-time{grid-template-columns:26px 1fr}
+  input[type=checkbox]{appearance:none;width:22px;height:22px;margin:1px 0 0;border:2px solid var(--ink-2);border-radius:6px;cursor:pointer;position:relative;flex:none}
+  input[type=checkbox]:checked{background:var(--done);border-color:var(--done)}
+  input[type=checkbox]:checked::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  input[type=checkbox]:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .t{font-size:13px;font-weight:800;color:var(--ink-2);padding-top:2px}
+  .x{font-size:15px}
+  .x small{display:block;color:var(--ink-2);font-size:13px;margin-top:2px}
+  li.done .x{color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--done)}
+  li.done .x small{text-decoration:none}
+  .note{padding:12px 14px;border-radius:10px;margin:14px 0;font-size:14px}
+  .note b{display:block;margin-bottom:3px}
+  .note.warn{background:var(--warn-soft);color:#6E2118}
+  .note.gold{background:var(--gold-soft);color:#5C4200}
+  .note.teal{background:var(--teal-soft);color:#0F4A55}
+  .tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 7px;border-radius:5px;background:var(--gold-soft);color:#5C4200;margin-left:6px;vertical-align:middle}
+  .tag.p{background:var(--teal-soft);color:#0F4A55}
+  footer{padding:20px 16px;border-top:1px solid var(--line);color:var(--ink-2);font-size:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  footer button{background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;font-size:13px;color:var(--warn);cursor:pointer}
+  @media print{nav,footer{display:none}section{display:block;page-break-before:always}section:first-of-type{page-break-before:auto}}
+  @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Universal Orlando, 12–19 de octubre 2026</h1>
+  <p>Ron + 3 · Terra Luna Resort · 2-Day Park-to-Park + 1-Day Epic Universe · Sin auto</p>
+  <div class="total"><div class="bar"><i id="totalbar"></i></div><b id="totaltxt">0 de 0</b></div>
+</header>
+
+<nav id="tabs"></nav>
+
+<main id="days">
+
+<!-- ============ ANTES ============ -->
+<section data-day="antes" data-label="Antes" data-sub="del viaje">
+  <div class="day-h"><h2>Antes de salir</h2><span>Guatemala</span></div>
+  <p class="lead">Nada de esto se puede resolver desde Orlando. Todo lo demás sí.</p>
+
+  <div class="note warn"><b>El paquete de Pablo vence hoy, 13 de septiembre</b>La cotización dice "Full Payment Due on 13SEP26" por $3,500.90. Antes de pagar, revisa los 4 puntos marcados con ⚠ abajo. Si algo no cuadra, pídele que lo corrija y reemita la cotización — no pagues "y después arreglamos".</div>
+
+  <div class="block">Verificar en la cotización antes de pagar</div>
+  <ul>
+    <li><label class="no-time"><input type="checkbox"><span class="x">⚠ Noches del hotel: 12 al 19 de octubre (7 noches) coinciden con la fecha de regreso de Avianca<small>Abre la reserva de Avianca y compara. Si el vuelo regresa el 18, sobra una noche pagada.</small></span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">⚠ Boleto: "2-Day Park-to-Park PLUS 1-Day Epic Universe", 4 adultos, inicio martes 13 de octubre<small>Correcto: en Universal los niños de 10+ pagan como adultos. Park-to-Park es lo que habilita el tren Hogwarts Express.</small></span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">⚠ Preguntar a Pablo qué fecha queda asignada al día de Epic Universe y si se puede cambiar<small>Este plan usa Epic el jueves 15. Si el 1-Day Epic queda fijado a otra fecha, se ajustan los días (ver nota en el jueves).</small></span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">⚠ Confirmar cómo se entregan los "Included with hotel": desayunos Leaky Cauldron, Three Broomsticks y Café L'Air de la Sirène, ice cream flight en Florean Fortescue's, sesión de foto Shutterbutton's<small>Normalmente son vouchers o códigos QR que dan en el check-in. Pregunta si aplican para los 4 y si el desayuno exige hora.</small></span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Pagar el paquete y guardar el PDF de confirmación con número de reserva</span></label></li>
+  </ul>
+
+  <div class="block">Documentos y vuelos</div>
+  <ul>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Pasaportes de los 4 con vigencia más allá de abril 2027 y visa B1/B2 vigente</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Avianca: agregar maleta documentada al regreso desde "Gestionar reserva"<small>Hacerlo en línea es mucho más barato que en el mostrador o la puerta.</small></span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Avianca: check-in en línea 24 h antes de cada vuelo y asientos juntos</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Avisar al banco que usarán tarjetas en EE. UU. del 12 al 19</span></label></li>
+  </ul>
+
+  <div class="block">App de Universal (hacerlo con calma, no en el aeropuerto)</div>
+  <ul>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Descargar "Universal Orlando Resort" en los 2 teléfonos de los adultos y crear cuenta</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Vincular los 4 boletos (con el número de confirmación del paquete)</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Vincular la reserva del hotel — así aparece Early Park Admission y el Virtual Line</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Revisar en la app los horarios de cada parque para el 13, 15 y 17 y qué parque tiene entrada anticipada cada día<small>Los horarios de octubre cambian por Halloween Horror Nights. USF suele cerrar antes que Epic e IOA.</small></span></label></li>
+  </ul>
+
+  <div class="block">Maleta</div>
+  <ul>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Tenis cómodos ya usados (25,000 pasos por día de parque), 1 par extra</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Poncho o impermeable ligero por persona (octubre = lluvias de tarde cortas; en el parque cuestan $15)</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Bloqueador, gorra, botella de agua reutilizable (agua gratis en cualquier restaurante de servicio rápido)</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Power bank por adulto — la app y Virtual Line consumen batería todo el día</span></label></li>
+    <li><label class="no-time"><input type="checkbox"><span class="x">Maleta de regreso con espacio vacío o una maleta plegable dentro para las compras</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ LUN 12 ============ -->
+<section data-day="d12" data-label="Lun 12" data-sub="Llegada">
+  <div class="day-h"><h2>Lunes 12 · Llegada</h2><span>Esfuerzo bajo</span></div>
+  <p class="lead">Instalarse, comprar desayunos de la semana y dormir temprano. Mañana es el primer parque.</p>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">MCO</span><span class="x">Migración, maletas, salir por la zona de Uber/Lyft (nivel 2, "App Rideshare")<small>Uber XL a Terra Luna: 25–30 min, ~$45–60. Es la opción más simple para 4 con maletas.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">Hotel</span><span class="x">Check-in en Terra Luna (habitación desde las 4 PM; si llegan antes, dejan maletas en Bell Services)<small>Piden tarjeta de crédito para depósito de incidentales — es un hold temporal, no un cobro. El parking de $30 y el cargo por adulto extra que aparecen en la cotización NO aplican a ustedes.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">Hotel</span><span class="x">Recoger en recepción los vouchers de desayunos, ice cream flight y foto Shutterbutton's. Preguntar cómo se canjean</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Hotel</span><span class="x">Confirmar en recepción a qué hora sale el primer shuttle mañana a Universal Studios</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Tarde</span><span class="x">Uber a Walmart Supercenter (Turkey Lake Rd, ~8 min): desayunos de la semana<small>Yogurt, granola, fruta, cereal, pan, barras, jugos. ~$50–60. El cuarto tiene mini-refri y cafetera, no microondas.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">Cena</span><span class="x">Omega Cafe &amp; Market en el hotel, o shuttle a CityWalk<small>Presupuesto: $60–80 los 4 en el hotel; $100–140 en CityWalk.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">Piscina y en cama a las 10 PM. Alarma 6:15 AM</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ MAR 13 ============ -->
+<section data-day="d13" data-label="Mar 13" data-sub="Universal Studios">
+  <div class="day-h"><h2>Martes 13 · Universal Studios Florida</h2><span>Park-to-Park día 1</span></div>
+  <p class="lead">Diagon Alley completo, tren a Hogsmeade, tren de regreso y el resto del parque. Martes = sin Halloween Horror Nights, día completo.</p>
+
+  <div class="note gold"><b>Hoy se usan 3 de los beneficios incluidos</b>Desayuno en Leaky Cauldron, foto en Shutterbutton's y el ice cream flight en Florean Fortescue's. Los tres están en Diagon Alley.</div>
+
+  <div class="block">Mañana</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">6:15</span><span class="x">Despertar. Algo ligero en el cuarto (el desayuno fuerte es en el parque)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">7:00</span><span class="x">Shuttle a Universal Studios. Llegar a seguridad antes de las 7:40</span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada. Caminar directo al fondo del parque → Diagon Alley (por London) → Escape from Gringotts<small>Si hoy la entrada anticipada es en IOA y no en USF, entren por IOA, tomen el primer Hogwarts Express a King's Cross y sigan el plan igual.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:45</span><span class="x">Ollivanders (show de la varita) → si compran varita interactiva, aquí<small>~$60–75 cada una, sale del presupuesto de shopping. Los hechizos funcionan en Diagon Alley, Hogsmeade y Ministry of Magic.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">9:30</span><span class="x">Desayuno en Leaky Cauldron <span class="tag">incluido</span></span></label></li>
+    <li><label><input type="checkbox"><span class="t">10:15</span><span class="x">Shutterbutton's Photography Studio: sesión de foto de los 4 <span class="tag">incluido</span></span></label></li>
+    <li><label><input type="checkbox"><span class="t">10:45</span><span class="x">Knockturn Alley, Weasleys' Wizard Wheezes, ver al dragón de Gringotts escupir fuego (cada ~10 min)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">11:15</span><span class="x">Hogwarts Express desde King's Cross a Hogsmeade (Islands of Adventure) <span class="tag p">Park-to-Park</span></span></label></li>
+  </ul>
+
+  <div class="block">Mediodía en Hogsmeade (IOA)</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">11:45</span><span class="x">Harry Potter and the Forbidden Journey (si la fila pasa de 60 min, déjenlo para el sábado con entrada anticipada)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">12:30</span><span class="x">Flight of the Hippogriff, Butterbeer, castillo de Hogwarts por fuera<small>Hagrid's NO hoy: el sábado lo montan primero con entrada anticipada, sin fila.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">1:15</span><span class="x">Hogwarts Express de regreso a King's Cross (el show en la ventana es distinto en esta dirección)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">1:45</span><span class="x">Florean Fortescue's: ice cream flight <span class="tag">incluido</span></span></label></li>
+  </ul>
+
+  <div class="block">Tarde — resto de Universal Studios</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">2:15</span><span class="x">Revenge of the Mummy (locker gratis mientras montan)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">3:00</span><span class="x">Transformers → Men in Black Alien Attack → The Simpsons Ride</span></label></li>
+    <li><label><input type="checkbox"><span class="t">4:15</span><span class="x">Villain-Con Minion Blast, E.T. Adventure, Hollywood Rip Ride Rockit para los chicos (51")</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Cierre</span><span class="x">Revisar la hora de cierre en la app. Shuttle de regreso desde la parada de hoteles</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">Cena ligera en el hotel. Hielo en pies y rodillas. Mañana no hay alarma</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ MIÉ 14 ============ -->
+<section data-day="d14" data-label="Mié 14" data-sub="Descanso + compras">
+  <div class="day-h"><h2>Miércoles 14 · Descanso y compras #1</h2><span>Esfuerzo moderado</span></div>
+  <p class="lead">Mañana libre, compras de tarde en tiendas de liquidación. Es donde más rinden los $500 de cada uno.</p>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">AM</span><span class="x">Dormir sin alarma, desayuno en el cuarto, piscina</span></label></li>
+    <li><label><input type="checkbox"><span class="t">12:30</span><span class="x">Uber a International Drive, zona de Ross / Burlington / TJ Maxx / Marshalls (~10 min, ~$12–15)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">1:00</span><span class="x">Ross Dress for Less → Burlington → TJ Maxx / Marshalls (caminables entre sí)<small>Regla: cada quien lleva la cuenta de su propio $500. Ropa, tenis y marcas rinden 40–60% más aquí que en outlets.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">4:00</span><span class="x">Almuerzo tardío en I-Drive (~$60–80 los 4)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">5:30</span><span class="x">Uber de regreso al hotel con las bolsas</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">Abrir la app: reconfirmar horario de Epic Universe para mañana y activar notificaciones de Virtual Line. Alarma 6:15 AM</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ JUE 15 ============ -->
+<section data-day="d15" data-label="Jue 15" data-sub="Epic Universe">
+  <div class="day-h"><h2>Jueves 15 · Epic Universe</h2><span>1-Day Epic · día completo</span></div>
+  <p class="lead">Es el único día de Epic y el parque cierra tarde, así que hoy sí vale la pena partirlo en dos: mañana fuerte, siesta en el hotel, regreso de noche.</p>
+
+  <div class="note teal"><b>Si Pablo fija el día de Epic en otra fecha</b>Intercambia este día con el sábado 17 (Epic el sábado, IOA el jueves). Funciona, pero Epic en sábado es más lleno; por eso el plan base es jueves.</div>
+
+  <div class="block">Mañana — llegar de primeros</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">6:15</span><span class="x">Despertar, desayuno ligero en el cuarto (el desayuno incluido es a las 10)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">7:00</span><span class="x">Shuttle a Epic Universe (está a minutos del hotel). Seguridad antes de las 7:40</span></label></li>
+    <li><label><input type="checkbox"><span class="t">7:50</span><span class="x">Ya adentro del portal, abrir la app y reservar Virtual Line para Harry Potter and the Battle at the Ministry<small>Si no aparece disponible, revisar cada 30 min; se abren tandas durante el día.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada → Super Nintendo World → Mario Kart: Bowser's Challenge primero</span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:45</span><span class="x">Mine-Cart Madness (Donkey Kong Country) → Yoshi's Adventure si hay poca fila</span></label></li>
+    <li><label><input type="checkbox"><span class="t">10:00</span><span class="x">Desayuno en Café L'Air de la Sirène (Ministry of Magic, París) <span class="tag">incluido</span></span></label></li>
+    <li><label><input type="checkbox"><span class="t">10:45</span><span class="x">Le Cirque Arcanus (show, ~25 min sentados) → explorar el París mágico</span></label></li>
+    <li><label><input type="checkbox"><span class="t">11:30</span><span class="x">Battle at the Ministry a la hora que dio el Virtual Line (o cuando les toque)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">12:30</span><span class="x">Isle of Berk → Hiccup's Wing Gliders → Fyre Drill (se mojan un poco)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">1:15</span><span class="x">The Untrainable Dragon (show con aire acondicionado, ~25 min)</span></label></li>
+  </ul>
+
+  <div class="block">Siesta</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">2:00</span><span class="x">Shuttle al hotel. Comer algo, piscina o dormir. Cargar teléfonos</span></label></li>
+  </ul>
+
+  <div class="block">Noche — Epic de noche es otro parque</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">5:30</span><span class="x">Regresar a Epic. Cena en Celestial Park (~$70–100 los 4)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">6:30</span><span class="x">Stardust Racers (la mejor montaña rusa del parque, 48") → Constellation Carousel</span></label></li>
+    <li><label><input type="checkbox"><span class="t">7:30</span><span class="x">Dark Universe → Monsters Unchained: The Frankenstein Experiment → Curse of the Werewolf<small>Es la zona más "de terror" del parque. A los 12 y 14 les va bien; si alguno no quiere, se queda en las fuentes de Celestial Park.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">Cierre</span><span class="x">Repetir Mario Kart o Stardust Racers si las filas bajaron. Show de fuentes en Celestial Park antes de cerrar</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">Shuttle al hotel. Mañana sin alarma</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ VIE 16 ============ -->
+<section data-day="d16" data-label="Vie 16" data-sub="Descanso">
+  <div class="day-h"><h2>Viernes 16 · Descanso</h2><span>Esfuerzo bajo</span></div>
+  <p class="lead">Recuperar piernas para el sábado. Todo lo de hoy es opcional y sin horario.</p>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">AM</span><span class="x">Dormir sin alarma. Desayuno en el cuarto. Piscina</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Tarde</span><span class="x">Opción tranquila: ICON Park en I-Drive (Uber ~$12). La rueda The Wheel cuesta ~$30 por persona — solo si sobra presupuesto</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Tarde</span><span class="x">Opción cero gasto: CityWalk de día con el shuttle gratis, ver tiendas, sin parques</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Cena</span><span class="x">CityWalk de noche (~$100–140 los 4). Bien temprano: en cama a las 10 PM</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">App: confirmar en qué parque es la entrada anticipada mañana (IOA o USF) y hora de apertura. Alarma 6:15 AM</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ SÁB 17 ============ -->
+<section data-day="d17" data-label="Sáb 17" data-sub="Islands of Adventure">
+  <div class="day-h"><h2>Sábado 17 · Islands of Adventure</h2><span>Park-to-Park día 2</span></div>
+  <p class="lead">Sábado es el día más lleno; la ventaja de ustedes es la entrada anticipada. Lo grande se monta entre 8 y 10 AM, y la tarde se cierra en Diagon Alley.</p>
+
+  <div class="note warn"><b>Jurassic Park River Adventure está cerrado</b>En remodelación hasta noviembre. No aparecerá en la app; no es error.</div>
+
+  <div class="block">Mañana — las tres filas largas primero</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">6:15</span><span class="x">Despertar, desayuno ligero (el fuerte es en Three Broomsticks)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">7:00</span><span class="x">Shuttle a Islands of Adventure. Seguridad antes de las 7:40<small>Si la entrada anticipada de hoy es en USF: entren a USF, primer Hogwarts Express a Hogsmeade y sigan el plan.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada → derecho a Hogsmeade → Hagrid's Magical Creatures Motorbike Adventure (48")<small>Locker gratis obligatorio. Es la fila más larga de Orlando después de las 10 AM.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:50</span><span class="x">Harry Potter and the Forbidden Journey (si no lo hicieron el martes, o repetir)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">9:30</span><span class="x">Desayuno en Three Broomsticks <span class="tag">incluido</span></span></label></li>
+    <li><label><input type="checkbox"><span class="t">10:15</span><span class="x">Jurassic World VelociCoaster (51") — locker gratis</span></label></li>
+    <li><label><input type="checkbox"><span class="t">11:15</span><span class="x">Skull Island: Reign of Kong</span></label></li>
+  </ul>
+
+  <div class="block">Mediodía — Marvel y agua</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">12:00</span><span class="x">The Incredible Hulk Coaster (54") → The Amazing Adventures of Spider-Man → Doctor Doom's Fearfall</span></label></li>
+    <li><label><input type="checkbox"><span class="t">1:30</span><span class="x">Almuerzo (~$70–90 los 4). Lluvia de tarde = momento de comer bajo techo</span></label></li>
+    <li><label><input type="checkbox"><span class="t">2:30</span><span class="x">Popeye &amp; Bluto's Bilge-Rat Barges — se empapan por completo. Solo si quieren; guardar teléfonos en locker ($)</span></label></li>
+  </ul>
+
+  <div class="block">Tarde — cierre en Diagon Alley</div>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">4:00</span><span class="x">Hogwarts Express de Hogsmeade a King's Cross <span class="tag p">Park-to-Park</span></span></label></li>
+    <li><label><input type="checkbox"><span class="t">4:30</span><span class="x">Escape from Gringotts otra vez si la fila lo permite; compras de souvenirs de Harry Potter (última oportunidad)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">6:00</span><span class="x">Cena en Leaky Cauldron (~$80–100 los 4) con el dragón de fondo<small>Ojo: si el 17 es noche de Halloween Horror Nights, USF cierra a las 5 PM. En ese caso adelanten el tren a las 3 PM o cenen en CityWalk.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">Shuttle al hotel. Mañana sin alarma</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ DOM 18 ============ -->
+<section data-day="d18" data-label="Dom 18" data-sub="Compras #2 + empacar">
+  <div class="day-h"><h2>Domingo 18 · Compras #2 y empacar</h2><span>Esfuerzo moderado</span></div>
+  <p class="lead">Lo que faltó comprar, y dejar las maletas listas hoy para que mañana sea solo salir.</p>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">AM</span><span class="x">Dormir sin alarma. Desayuno en el cuarto (terminar lo del supermercado)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">11:00</span><span class="x">Uber a Orlando International Premium Outlets (I-Drive norte, ~12 min, ~$15)<small>Nike, Adidas, Levi's, Tommy, Under Armour. Aquí van marcas específicas; lo general ya se compró el miércoles.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">2:00</span><span class="x">Almuerzo en el food court del outlet (~$50–60 los 4)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">4:00</span><span class="x">Uber de regreso</span></label></li>
+    <li><label><input type="checkbox"><span class="t">5:00</span><span class="x">Empacar. Quitar etiquetas y cajas voluminosas para que quepa todo<small>Avianca: 23 kg por maleta documentada. Si no hay báscula en el cuarto, pedir en recepción.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">6:30</span><span class="x">Check-in en línea de Avianca para mañana. Guardar pases de abordar en el teléfono</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Cena</span><span class="x">Última cena: CityWalk o el hotel. Pedir Uber XL programado para mañana (ver hora abajo)</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ LUN 19 ============ -->
+<section data-day="d19" data-label="Lun 19" data-sub="Regreso">
+  <div class="day-h"><h2>Lunes 19 · Regreso</h2><span>Esfuerzo bajo</span></div>
+  <p class="lead">Vuelo internacional: en el aeropuerto 3 horas antes. Calcula para atrás desde la hora de salida del vuelo.</p>
+  <ul>
+    <li><label><input type="checkbox"><span class="t">-4:15 h</span><span class="x">Despertar. Revisar el cuarto: cargadores, cajones, baño, caja fuerte</span></label></li>
+    <li><label><input type="checkbox"><span class="t">-3:45 h</span><span class="x">Check-out (se puede hacer desde la app o dejando la llave). Confirmar que no haya cargos extra en la cuenta</span></label></li>
+    <li><label><input type="checkbox"><span class="t">-3:30 h</span><span class="x">Uber XL a MCO (~30 min, ~$45–60)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">-3:00 h</span><span class="x">Documentar maletas en Avianca, seguridad, puerta</span></label></li>
+    <li><label><input type="checkbox"><span class="t">Vuelo</span><span class="x">¡Lo lograron! Fotos de Shutterbutton's a la familia en Guatemala</span></label></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <span>El avance se guarda en este navegador y dispositivo.</span>
+  <button id="reset">Reiniciar todo</button>
+</footer>
+
+<script>
+(function(){
+  const KEY='universal-oct-2026-checks';
+  const sections=[...document.querySelectorAll('section')];
+  const tabs=document.getElementById('tabs');
+  const boxes=[...document.querySelectorAll('input[type=checkbox]')];
+  boxes.forEach((b,i)=>b.dataset.i=i);
+  let state={};
+  function load(){
+    try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){state={};}
+    boxes.forEach(b=>{b.checked=!!state[b.dataset.i];b.closest('li').classList.toggle('done',b.checked);});
+    render();
+  }
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
+  }
+  function pct(sec){const bs=[...sec.querySelectorAll('input')];const d=bs.filter(b=>b.checked).length;return {d,t:bs.length};}
+  function render(){
+    let D=0,T=0;
+    sections.forEach((s,i)=>{const p=pct(s);D+=p.d;T+=p.t;const el=tabs.children[i].querySelector('.pct');el.textContent=p.d===p.t?'✓':(p.d?Math.round(100*p.d/p.t)+'%':'');});
+    document.getElementById('totalbar').style.width=(T?100*D/T:0)+'%';
+    document.getElementById('totaltxt').textContent=D+' de '+T;
+  }
+  sections.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=s.dataset.label+'<span class="pct"></span><small>'+s.dataset.sub+'</small>';
+    b.onclick=()=>show(i);tabs.appendChild(b);
+  });
+  function show(i){sections.forEach((s,j)=>s.classList.toggle('on',i===j));[...tabs.children].forEach((t,j)=>t.classList.toggle('on',i===j));if(tabs.children[i].scrollIntoView)tabs.children[i].scrollIntoView({inline:'center',block:'nearest'});}
+  // Open on the day that matches today, else "Antes"
+  const map={'2026-10-12':1,'2026-10-13':2,'2026-10-14':3,'2026-10-15':4,'2026-10-16':5,'2026-10-17':6,'2026-10-18':7,'2026-10-19':8};
+  const today=new Date().toISOString().slice(0,10);
+  show(map[today]??0);
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.dataset.i]=b.checked;if(!b.checked)delete state[b.dataset.i];b.closest('li').classList.toggle('done',b.checked);render();save();}));
+  document.getElementById('reset').onclick=()=>{if(!confirm('¿Borrar todas las marcas?'))return;state={};boxes.forEach(b=>{b.checked=false;b.closest('li').classList.remove('done');});render();try{localStorage.removeItem(KEY);}catch(e){}};
+  load();
+})();
+</script>
+</body>
+</html>
