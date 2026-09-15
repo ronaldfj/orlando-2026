@@ -64,6 +64,32 @@
   .tag.p{background:var(--teal-soft);color:#0F4A55}
   footer{padding:20px 16px;border-top:1px solid var(--line);color:var(--ink-2);font-size:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
   footer button{background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;font-size:13px;color:var(--warn);cursor:pointer}
+
+  /* ---- Gastos ---- */
+  .g-form{display:grid;grid-template-columns:1fr 100px;gap:8px;margin:12px 0}
+  .g-form input,.g-form select{font:inherit;font-size:15px;padding:10px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+  .g-form input:focus,.g-form select:focus{outline:2px solid var(--teal);border-color:transparent}
+  .g-form .full{grid-column:1/-1}
+  .g-form button{grid-column:1/-1;font:inherit;font-weight:800;font-size:15px;padding:12px;border:0;border-radius:8px;background:var(--ink);color:#fff;cursor:pointer}
+  .g-total{margin:16px 0 6px;display:flex;justify-content:space-between;align-items:baseline}
+  .g-total b{font-size:28px;font-weight:800;letter-spacing:-.02em}
+  .g-total span{font-size:13px;color:var(--ink-2)}
+  .g-bar{height:18px;background:var(--line);border-radius:99px;overflow:hidden;position:relative}
+  .g-bar i{display:block;height:100%;width:0;background:var(--done);transition:width .3s}
+  .g-bar.warn i{background:var(--gold)} .g-bar.over i{background:var(--warn)}
+  .g-bar em{position:absolute;top:0;bottom:0;left:80%;width:2px;background:var(--ink);opacity:.35}
+  .g-left{font-size:14px;color:var(--ink-2);margin:6px 0 0}
+  .g-left.over{color:var(--warn);font-weight:700}
+  .g-cats{margin:14px 0 4px}
+  .g-cat{display:grid;grid-template-columns:110px 1fr 70px;gap:8px;align-items:center;font-size:13px;padding:5px 0}
+  .g-cat .cb{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+  .g-cat .cb i{display:block;height:100%;background:var(--teal)}
+  .g-cat b{text-align:right}
+  .g-list li{display:grid;grid-template-columns:1fr auto 32px;gap:8px;align-items:center;padding:10px 4px;font-size:14px}
+  .g-list li small{display:block;color:var(--ink-2);font-size:12px}
+  .g-list li b{white-space:nowrap}
+  .g-list li button{background:none;border:0;color:var(--warn);font-size:18px;cursor:pointer;padding:4px}
+  .g-empty{color:var(--ink-2);font-size:14px;padding:14px 0}
   @media print{nav,footer{display:none}section{display:block;page-break-before:always}section:first-of-type{page-break-before:auto}}
   @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
@@ -300,6 +326,38 @@
   </ul>
 </section>
 
+
+<!-- ============ GASTOS ============ -->
+<section data-day="gastos" data-label="Gastos" data-sub="tope $10,000">
+  <div class="day-h"><h2>Gastos del viaje</h2><span>Tope: $10,000</span></div>
+  <p class="lead">Anota cada gasto al momento. La barra cambia a amarillo al 80% y a rojo al pasar el tope.</p>
+
+  <div class="g-total"><b id="g-sum">$0</b><span id="g-pct">0% del tope</span></div>
+  <div class="g-bar" id="g-bar"><i></i><em></em></div>
+  <p class="g-left" id="g-left"></p>
+
+  <div class="g-form">
+    <input class="full" id="g-desc" type="text" placeholder="¿En qué? (ej. Cena Bahama Breeze)" autocomplete="off">
+    <select id="g-cat">
+      <option>Paquete / hotel</option>
+      <option>Vuelos</option>
+      <option>Comida</option>
+      <option>Transporte</option>
+      <option>Parques / extras</option>
+      <option>Shopping</option>
+      <option>Otro</option>
+    </select>
+    <input id="g-amt" type="number" inputmode="decimal" step="0.01" min="0" placeholder="USD">
+    <button id="g-add" type="button">Agregar gasto</button>
+  </div>
+
+  <div class="block">Por categoría</div>
+  <div class="g-cats" id="g-cats"></div>
+
+  <div class="block">Registro</div>
+  <ul class="g-list" id="g-list"></ul>
+</section>
+
 </main>
 
 <footer>
@@ -326,7 +384,7 @@
   function pct(sec){const bs=[...sec.querySelectorAll('input')];const d=bs.filter(b=>b.checked).length;return {d,t:bs.length};}
   function render(){
     let D=0,T=0;
-    sections.forEach((s,i)=>{const p=pct(s);D+=p.d;T+=p.t;const el=tabs.children[i].querySelector('.pct');el.textContent=p.d===p.t?'✓':(p.d?Math.round(100*p.d/p.t)+'%':'');});
+    sections.forEach((s,i)=>{const p=pct(s);D+=p.d;T+=p.t;const el=tabs.children[i].querySelector('.pct');el.textContent=!p.t?'':(p.d===p.t?'✓':(p.d?Math.round(100*p.d/p.t)+'%':''));});
     document.getElementById('totalbar').style.width=(T?100*D/T:0)+'%';
     document.getElementById('totaltxt').textContent=D+' de '+T;
   }
@@ -343,6 +401,46 @@
   boxes.forEach(b=>b.addEventListener('change',()=>{state[b.dataset.i]=b.checked;if(!b.checked)delete state[b.dataset.i];b.closest('li').classList.toggle('done',b.checked);render();save();}));
   document.getElementById('reset').onclick=()=>{if(!confirm('¿Borrar todas las marcas?'))return;state={};boxes.forEach(b=>{b.checked=false;b.closest('li').classList.remove('done');});render();try{localStorage.removeItem(KEY);}catch(e){}};
   load();
+})();
+
+// ---------- Gastos ----------
+(function(){
+  const GK='universal-oct-2026-gastos', LIMIT=10000;
+  const cats=['Paquete / hotel','Vuelos','Comida','Transporte','Parques / extras','Shopping','Otro'];
+  let items=null;
+  try{items=JSON.parse(localStorage.getItem(GK));}catch(e){}
+  if(!Array.isArray(items)){
+    items=[{id:1,desc:'Paquete Universal: Terra Luna 7 noches + boletos (DOD Travel)',cat:'Paquete / hotel',amt:3500.90,d:'2026-09-13'}];
+    localStorage.setItem(GK,JSON.stringify(items));
+  }
+  const $=id=>document.getElementById(id);
+  const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});
+  function save(){try{localStorage.setItem(GK,JSON.stringify(items));}catch(e){}}
+  function render(){
+    const total=items.reduce((a,b)=>a+b.amt,0), p=total/LIMIT;
+    $('g-sum').textContent=fmt(total);
+    $('g-pct').textContent=Math.round(p*100)+'% del tope';
+    const bar=$('g-bar'); bar.querySelector('i').style.width=Math.min(100,p*100)+'%';
+    bar.className='g-bar'+(p>=1?' over':p>=.8?' warn':'');
+    const left=$('g-left');
+    if(p>=1){left.textContent='Pasaste el tope por '+fmt(total-LIMIT);left.className='g-left over';}
+    else{left.textContent='Quedan '+fmt(LIMIT-total);left.className='g-left';}
+    const byCat={}; items.forEach(i=>byCat[i.cat]=(byCat[i.cat]||0)+i.amt);
+    const max=Math.max(1,...Object.values(byCat));
+    $('g-cats').innerHTML=cats.filter(c=>byCat[c]).map(c=>'<div class="g-cat"><span>'+c+'</span><div class="cb"><i style="width:'+(byCat[c]/max*100)+'%"></i></div><b>'+fmt(byCat[c])+'</b></div>').join('')||'<div class="g-empty">Sin gastos todavía.</div>';
+    $('g-list').innerHTML=items.slice().reverse().map(i=>'<li><span>'+esc(i.desc)+'<small>'+i.cat+' · '+i.d+'</small></span><b>'+fmt(i.amt)+'</b><button data-id="'+i.id+'" aria-label="Borrar">✕</button></li>').join('');
+  }
+  function esc(t){return t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+  $('g-add').onclick=()=>{
+    const desc=$('g-desc').value.trim(), amt=parseFloat($('g-amt').value);
+    if(!desc||!(amt>0)){$('g-amt').focus();return;}
+    items.push({id:Date.now(),desc,cat:$('g-cat').value,amt:Math.round(amt*100)/100,d:new Date().toISOString().slice(0,10)});
+    $('g-desc').value='';$('g-amt').value='';save();render();
+  };
+  $('g-amt').addEventListener('keydown',e=>{if(e.key==='Enter')$('g-add').click();});
+  $('g-list').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    if(!confirm('¿Borrar este gasto?'))return;items=items.filter(i=>String(i.id)!==b.dataset.id);save();render();});
+  render();
 })();
 </script>
 </body>
