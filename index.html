@@ -62,6 +62,7 @@
   .note.teal{background:var(--teal-soft);color:#0F4A55}
   .tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 7px;border-radius:5px;background:var(--gold-soft);color:#5C4200;margin-left:6px;vertical-align:middle}
   .tag.p{background:var(--teal-soft);color:#0F4A55}
+  .tag.s{background:var(--bg-2);color:var(--ink-2);border:1px solid var(--line)}
   footer{padding:20px 16px;border-top:1px solid var(--line);color:var(--ink-2);font-size:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
   footer button{background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;font-size:13px;color:var(--warn);cursor:pointer}
 
@@ -111,6 +112,8 @@
   <p class="lead">Nada de esto se puede resolver desde Orlando. Todo lo demás sí.</p>
 
   <div class="note teal"><b>Boletos y hotel comprados ✓</b>Paquete Terra Luna + boletos de Universal pagado. Guarda el PDF de confirmación a mano: lo vas a necesitar para vincular todo en la app.</div>
+
+  <div class="note gold"><b>Reglas anti-cola (aplican los 3 días de parque)</b>1) Llegar 45 min antes de la <i>entrada anticipada</i>, no de la apertura: las primeras 2 horas rinden como 4–5 de la tarde.<br>2) Primero la atracción con peor fila del día, no la más cercana.<br>3) Usar Single Rider (marcado así en cada día): los chicos de 12 y 14 suben en carros distintos pero salen casi juntos, y la espera suele ser la mitad o menos.<br>4) Comer antes de las 11 o después de las 2, pidiendo por Mobile Order en la app.<br>5) De 12 a 3: shows, descanso o atracciones de fila corta.<br>6) La última hora las filas bajan: si están en fila al cierre, igual montan.<br>7) Ver tiempos en vivo en la app; si algo reabre tras una falla, su fila queda corta un rato.<br><i>Plan B:</i> Terra Luna no incluye Express. Si un día las filas se ponen terribles, se puede comprar en la app ese mismo día (precio varía por fecha). No comprarlo por adelantado.</div>
 
   <div class="block">Documentos y vuelos</div>
   <ul>
@@ -162,11 +165,13 @@
 
   <div class="note gold"><b>Hoy se usan 3 de los beneficios incluidos</b>Desayuno en Leaky Cauldron, foto en Shutterbutton's y el ice cream flight en Florean Fortescue's. Los tres están en Diagon Alley.</div>
 
+  <div class="note teal"><b>Clave anti-cola de hoy</b>En ago–sep Universal Studios <b>no</b> tuvo entrada anticipada; Islands of Adventure sí. La noche del 12 confirmen en la app. Si hoy solo abre temprano IOA: entren por IOA → Hagrid's casi sin fila → primer Hogwarts Express a King's Cross → Gringotts. Con Park-to-Park se puede.</div>
+
   <div class="block">Mañana</div>
   <ul>
     <li><label><input type="checkbox"><span class="t">6:15</span><span class="x">Despertar. Algo ligero en el cuarto (el desayuno fuerte es en el parque)</span></label></li>
     <li><label><input type="checkbox"><span class="t">7:00</span><span class="x">Shuttle a Universal Studios. Llegar a seguridad antes de las 7:40</span></label></li>
-    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada. Caminar directo al fondo del parque → Diagon Alley (por London) → Escape from Gringotts<small>Si hoy la entrada anticipada es en IOA y no en USF, entren por IOA, tomen el primer Hogwarts Express a King's Cross y sigan el plan igual.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada. Caminar directo al fondo del parque → Diagon Alley (por London) → Escape from Gringotts <span class="tag s">Single Rider</span><small>Si la entrada anticipada es en IOA (lo más probable): entren por IOA, monten Hagrid's primero (es la peor fila del resort después de las 10) y tomen el primer Hogwarts Express a King's Cross. Gringotts tiene Single Rider si la fila ya creció.</small></span></label></li>
     <li><label><input type="checkbox"><span class="t">8:45</span><span class="x">Ollivanders (show de la varita) → si compran varita interactiva, aquí<small>~$60–75 cada una, sale del presupuesto de shopping. Los hechizos funcionan en Diagon Alley, Hogsmeade y Ministry of Magic.</small></span></label></li>
     <li><label><input type="checkbox"><span class="t">9:30</span><span class="x">Desayuno en Leaky Cauldron <span class="tag">incluido</span></span></label></li>
     <li><label><input type="checkbox"><span class="t">10:15</span><span class="x">Shutterbutton's Photography Studio: sesión de foto de los 4 <span class="tag">incluido</span></span></label></li>
@@ -176,16 +181,16 @@
 
   <div class="block">Mediodía en Hogsmeade (IOA)</div>
   <ul>
-    <li><label><input type="checkbox"><span class="t">11:45</span><span class="x">Harry Potter and the Forbidden Journey (si la fila pasa de 60 min, déjenlo para el sábado con entrada anticipada)</span></label></li>
-    <li><label><input type="checkbox"><span class="t">12:30</span><span class="x">Flight of the Hippogriff, Butterbeer, castillo de Hogwarts por fuera<small>Hagrid's NO hoy: el sábado lo montan primero con entrada anticipada, sin fila.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">11:45</span><span class="x">Harry Potter and the Forbidden Journey <span class="tag s">Single Rider</span> (si la fila normal pasa de 60 min, Single Rider o déjenlo para el sábado)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">12:30</span><span class="x">Flight of the Hippogriff, Butterbeer, castillo de Hogwarts por fuera<small>Si no montaron Hagrid's en la mañana, no hoy: el sábado va primero con entrada anticipada.</small></span></label></li>
     <li><label><input type="checkbox"><span class="t">1:15</span><span class="x">Hogwarts Express de regreso a King's Cross (el show en la ventana es distinto en esta dirección)</span></label></li>
     <li><label><input type="checkbox"><span class="t">1:45</span><span class="x">Florean Fortescue's: ice cream flight <span class="tag">incluido</span></span></label></li>
   </ul>
 
   <div class="block">Tarde — resto de Universal Studios</div>
   <ul>
-    <li><label><input type="checkbox"><span class="t">2:15</span><span class="x">Revenge of the Mummy (locker gratis mientras montan)</span></label></li>
-    <li><label><input type="checkbox"><span class="t">3:00</span><span class="x">Transformers → Men in Black Alien Attack → The Simpsons Ride</span></label></li>
+    <li><label><input type="checkbox"><span class="t">2:15</span><span class="x">Revenge of the Mummy <span class="tag s">Single Rider</span> (locker gratis mientras montan)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">3:00</span><span class="x">Transformers → Men in Black Alien Attack <span class="tag s">Single Rider</span> → The Simpsons Ride</span></label></li>
     <li><label><input type="checkbox"><span class="t">4:15</span><span class="x">Villain-Con Minion Blast, E.T. Adventure, Hollywood Rip Ride Rockit para los chicos (51")</span></label></li>
     <li><label><input type="checkbox"><span class="t">Cierre</span><span class="x">Revisar la hora de cierre en la app. Shuttle de regreso desde la parada de hoteles</span></label></li>
     <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">Cena ligera en el hotel. Hielo en pies y rodillas. Mañana no hay alarma</span></label></li>
@@ -218,11 +223,11 @@
     <li><label><input type="checkbox"><span class="t">6:15</span><span class="x">Despertar, desayuno ligero en el cuarto (el desayuno incluido es a las 10)</span></label></li>
     <li><label><input type="checkbox"><span class="t">7:00</span><span class="x">Shuttle a Epic Universe (está a minutos del hotel). Seguridad antes de las 7:40</span></label></li>
     <li><label><input type="checkbox"><span class="t">7:50</span><span class="x">Ya adentro del portal, abrir la app y reservar Virtual Line para Harry Potter and the Battle at the Ministry<small>Si no aparece disponible, revisar cada 30 min; se abren tandas durante el día.</small></span></label></li>
-    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada → Super Nintendo World → Mario Kart: Bowser's Challenge primero</span></label></li>
-    <li><label><input type="checkbox"><span class="t">8:45</span><span class="x">Mine-Cart Madness (Donkey Kong Country) → Yoshi's Adventure si hay poca fila</span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada → Super Nintendo World → <b>Mine-Cart Madness primero</b> <span class="tag s">Single Rider</span><small>Es la que peor se pone: suele pasar de 2 horas el resto del día. Por eso va antes que Mario Kart.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:45</span><span class="x">Mario Kart: Bowser's Challenge <span class="tag s">Single Rider</span> → Yoshi's Adventure si hay poca fila</span></label></li>
     <li><label><input type="checkbox"><span class="t">10:00</span><span class="x">Desayuno en Café L'Air de la Sirène (Ministry of Magic, París) <span class="tag">incluido</span></span></label></li>
     <li><label><input type="checkbox"><span class="t">10:45</span><span class="x">Le Cirque Arcanus (show, ~25 min sentados) → explorar el París mágico</span></label></li>
-    <li><label><input type="checkbox"><span class="t">11:30</span><span class="x">Battle at the Ministry a la hora que dio el Virtual Line (o cuando les toque)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">11:30</span><span class="x">Battle at the Ministry a la hora que dio el Virtual Line <span class="tag s">Single Rider</span><small>Sin Virtual Line, usen Single Rider. No la dejen para la noche: es la que más se descompone.</small></span></label></li>
     <li><label><input type="checkbox"><span class="t">12:30</span><span class="x">Isle of Berk → Hiccup's Wing Gliders → Fyre Drill (se mojan un poco)</span></label></li>
     <li><label><input type="checkbox"><span class="t">1:15</span><span class="x">The Untrainable Dragon (show con aire acondicionado, ~25 min)</span></label></li>
   </ul>
@@ -235,8 +240,8 @@
   <div class="block">Noche — Epic de noche es otro parque</div>
   <ul>
     <li><label><input type="checkbox"><span class="t">5:30</span><span class="x">Regresar a Epic. Cena en Celestial Park (~$70–100 los 4)</span></label></li>
-    <li><label><input type="checkbox"><span class="t">6:30</span><span class="x">Stardust Racers (la mejor montaña rusa del parque, 48") → Constellation Carousel</span></label></li>
-    <li><label><input type="checkbox"><span class="t">7:30</span><span class="x">Dark Universe → Monsters Unchained: The Frankenstein Experiment → Curse of the Werewolf<small>Es la zona más "de terror" del parque. A los 12 y 14 les va bien; si alguno no quiere, se queda en las fuentes de Celestial Park.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">6:30</span><span class="x">Stardust Racers <span class="tag s">Single Rider</span> (la mejor montaña rusa del parque, 48") → Constellation Carousel</span></label></li>
+    <li><label><input type="checkbox"><span class="t">7:30</span><span class="x">Dark Universe → Monsters Unchained: The Frankenstein Experiment → Curse of the Werewolf <span class="tag s">Single Rider</span><small>Es la zona más "de terror" del parque. A los 12 y 14 les va bien; si alguno no quiere, se queda en las fuentes de Celestial Park.</small></span></label></li>
     <li><label><input type="checkbox"><span class="t">Cierre</span><span class="x">Repetir Mario Kart o Stardust Racers si las filas bajaron. Show de fuentes en Celestial Park antes de cerrar</span></label></li>
     <li><label><input type="checkbox"><span class="t">Noche</span><span class="x">Shuttle al hotel. Mañana sin alarma</span></label></li>
   </ul>
@@ -266,16 +271,16 @@
   <ul>
     <li><label><input type="checkbox"><span class="t">6:15</span><span class="x">Despertar, desayuno ligero (el fuerte es en Three Broomsticks)</span></label></li>
     <li><label><input type="checkbox"><span class="t">7:00</span><span class="x">Shuttle a Islands of Adventure. Seguridad antes de las 7:40<small>Si la entrada anticipada de hoy es en USF: entren a USF, primer Hogwarts Express a Hogsmeade y sigan el plan.</small></span></label></li>
-    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada → derecho a Hogsmeade → Hagrid's Magical Creatures Motorbike Adventure (48")<small>Locker gratis obligatorio. Es la fila más larga de Orlando después de las 10 AM.</small></span></label></li>
-    <li><label><input type="checkbox"><span class="t">8:50</span><span class="x">Harry Potter and the Forbidden Journey (si no lo hicieron el martes, o repetir)</span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:00</span><span class="x">Entrada anticipada → derecho a Hogsmeade → Hagrid's Magical Creatures Motorbike Adventure (48")<small>Locker gratis obligatorio. Es la fila más larga de Orlando después de las 10 AM. Si ya lo montaron el martes, cambien el orden: VelociCoaster primero y luego Forbidden Journey.</small></span></label></li>
+    <li><label><input type="checkbox"><span class="t">8:50</span><span class="x">Harry Potter and the Forbidden Journey <span class="tag s">Single Rider</span> (si no lo hicieron el martes, o repetir)</span></label></li>
     <li><label><input type="checkbox"><span class="t">9:30</span><span class="x">Desayuno en Three Broomsticks <span class="tag">incluido</span></span></label></li>
-    <li><label><input type="checkbox"><span class="t">10:15</span><span class="x">Jurassic World VelociCoaster (51") — locker gratis</span></label></li>
-    <li><label><input type="checkbox"><span class="t">11:15</span><span class="x">Skull Island: Reign of Kong</span></label></li>
+    <li><label><input type="checkbox"><span class="t">10:15</span><span class="x">Jurassic World VelociCoaster <span class="tag s">Single Rider</span> (51") — locker gratis</span></label></li>
+    <li><label><input type="checkbox"><span class="t">11:15</span><span class="x">Skull Island: Reign of Kong <span class="tag s">Single Rider</span></span></label></li>
   </ul>
 
   <div class="block">Mediodía — Marvel y agua</div>
   <ul>
-    <li><label><input type="checkbox"><span class="t">12:00</span><span class="x">The Incredible Hulk Coaster (54") → The Amazing Adventures of Spider-Man → Doctor Doom's Fearfall</span></label></li>
+    <li><label><input type="checkbox"><span class="t">12:00</span><span class="x">The Incredible Hulk Coaster (54") → The Amazing Adventures of Spider-Man <span class="tag s">Single Rider</span> → Doctor Doom's Fearfall</span></label></li>
     <li><label><input type="checkbox"><span class="t">1:30</span><span class="x">Almuerzo (~$70–90 los 4). Lluvia de tarde = momento de comer bajo techo</span></label></li>
     <li><label><input type="checkbox"><span class="t">2:30</span><span class="x">Popeye &amp; Bluto's Bilge-Rat Barges — se empapan por completo. Solo si quieren; guardar teléfonos en locker ($)</span></label></li>
   </ul>
