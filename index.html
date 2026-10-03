@@ -145,6 +145,8 @@
 <section data-day="d12" data-label="Lun 12" data-sub="Llegada">
   <div class="day-h"><h2>Lunes 12 · Llegada</h2><span>Esfuerzo bajo</span></div>
   <p class="lead">Instalarse, comprar desayunos de la semana y dormir temprano. Mañana es el primer parque.</p>
+
+  <div class="note gold"><b>En el check-in: fijar el día de Epic Universe</b>Pidan el <b>jueves 15</b> (entre semana hay menos gente). Si no hay cupo, el sábado 17 y se intercambian los días 15 y 17. Aprovechen para preguntar qué parque tiene entrada anticipada el martes 13.</div>
   <ul>
     <li><label><input type="checkbox"><span class="t">MCO</span><span class="x">Migración, maletas, salir por la zona de Uber/Lyft (nivel 2, "App Rideshare")<small>Uber XL a Terra Luna: 25–30 min, ~$45–60. Es la opción más simple para 4 con maletas.</small></span></label></li>
     <li><label><input type="checkbox"><span class="t">Hotel</span><span class="x">Check-in en Terra Luna (habitación desde las 4 PM; si llegan antes, dejan maletas en Bell Services)<small>Piden tarjeta de crédito para depósito de incidentales — es un hold temporal, no un cobro. El parking de $30 y el cargo por adulto extra que aparecen en la cotización NO aplican a ustedes.</small></span></label></li>
@@ -216,7 +218,7 @@
   <div class="day-h"><h2>Jueves 15 · Epic Universe</h2><span>1-Day Epic · día completo</span></div>
   <p class="lead">Es el único día de Epic y el parque cierra tarde, así que hoy sí vale la pena partirlo en dos: mañana fuerte, siesta en el hotel, regreso de noche.</p>
 
-  <div class="note teal"><b>Si Pablo fija el día de Epic en otra fecha</b>Intercambia este día con el sábado 17 (Epic el sábado, IOA el jueves). Funciona, pero Epic en sábado es más lleno; por eso el plan base es jueves.</div>
+  <div class="note teal"><b>El día de Epic se fija al llegar al hotel (lunes 12)</b>Pidan el jueves 15. Si no hay cupo, intercambien este día con el sábado 17 (Epic el sábado, IOA el jueves). Funciona igual, pero Epic en sábado tiene más gente.</div>
 
   <div class="block">Mañana — llegar de primeros</div>
   <ul>
@@ -406,7 +408,7 @@
   let items=null;
   try{items=JSON.parse(localStorage.getItem(GK));}catch(e){}
   if(!Array.isArray(items)){
-    items=[{id:1,desc:'Paquete Universal: Terra Luna 7 noches + boletos (DOD Travel)',cat:'Paquete / hotel',amt:3500.90,d:'2026-09-13'}];
+    items=[{id:1,desc:'Paquete Universal: Terra Luna 7 noches + boletos',cat:'Paquete / hotel',amt:3500.90,d:'2026-09-13'}];
     localStorage.setItem(GK,JSON.stringify(items));
   }
   const $=id=>document.getElementById(id);
